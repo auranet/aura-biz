@@ -1,0 +1,9 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="name">
+        <controls:/>	
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

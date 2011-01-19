@@ -1,0 +1,10 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="id,invoice,invoice_detail_type,amount,locked">
+        <controls:/>	
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>
+

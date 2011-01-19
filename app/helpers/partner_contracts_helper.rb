@@ -1,0 +1,2 @@
+module PartnerContractsHelper
+end

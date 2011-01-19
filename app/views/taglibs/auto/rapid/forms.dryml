@@ -1,0 +1,191 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="form" for="BillRate">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="rate, pay_rate, effective_dt, expiration_dt, billable_task, employee, partner_contract" param/>
+    <div param="actions">
+      <submit label="#{ht 'bill_rates.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="BillablePeriod">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="month, year, locked, last_maintenace_dt, locked_dt" param/>
+    <div param="actions">
+      <submit label="#{ht 'billable_periods.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="BillableTask">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, disabled, partner_contract" param/>
+    <div param="actions">
+      <submit label="#{ht 'billable_tasks.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="BillingDetail">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="billable_hours, billable_amount, payable_amount, actual_bill_rate, pay_rate, invoice_partner, bill_rate, billable_period, billable_task, customer, employee, partner, partner_contract, task_hour" param/>
+    <div param="actions">
+      <submit label="#{ht 'billing_details.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Customer">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'customers.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="EmployeeDetail">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="yearly_salary, yearly_vacation_days, yearly_flex_days, title, cost, effective_dt, employee_type, expiration_dt, employee" param/>
+    <div param="actions">
+      <submit label="#{ht 'employee_details.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Employee">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="first_name, last_name, employment_start_dt, employment_end_dt, ssn" param/>
+    <div param="actions">
+      <submit label="#{ht 'employees.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="InvoiceDetailType">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description" param/>
+    <div param="actions">
+      <submit label="#{ht 'invoice_detail_types.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="InvoiceDetail">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="locked, post_dt, amount, notes, invoice, invoice_detail_type" param/>
+    <div param="actions">
+      <submit label="#{ht 'invoice_details.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Invoice">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="billable_entity_type, closed, billable_period, customer, partner" param/>
+    <div param="actions">
+      <submit label="#{ht 'invoices.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="PartnerContract">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="invoice_partner, customer, partner" param/>
+    <div param="actions">
+      <submit label="#{ht 'partner_contracts.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Partner">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'partners.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="TaskHour">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="hours, locked, billable_period, billable_task, employee" param/>
+    <div param="actions">
+      <submit label="#{ht 'task_hours.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="User">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, administrator, state" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="signup-form" polymorphic/>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup" merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="reset-password-form" polymorphic/>
+<def tag="reset-password-form" for="User">
+  <form lifecycle="reset_password" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.reset_password', :default=>['Reset Password']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+

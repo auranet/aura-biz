@@ -1,0 +1,9 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="id,rate,employee,billable_task,partner_contract,rate,effective_dt,expiration_dt">
+        <controls:/>	
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

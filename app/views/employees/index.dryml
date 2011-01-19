@@ -1,0 +1,9 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="name,employment_start_dt,employment_end_dt,bill_rates">
+        <controls:/>	
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

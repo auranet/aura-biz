@@ -1,0 +1,139 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="card" for="BillRate">
+  <card class="bill-rate" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="BillablePeriod">
+  <card class="billable-period" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="BillableTask">
+  <card class="billable-task" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="bill_rates.collection.count" count="&this.bill_rates.size">
+         <count:bill_rates param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="BillingDetail">
+  <card class="billing-detail" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Customer">
+  <card class="customer" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Employee">
+  <card class="employee" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="employee_details.collection.count" count="&this.employee_details.size">
+         <count:employee_details param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="EmployeeDetail">
+  <card class="employee-detail" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Invoice">
+  <card class="invoice" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="invoice_details.collection.count" count="&this.invoice_details.size">
+         <count:invoice_details param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="InvoiceDetail">
+  <card class="invoice-detail" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="InvoiceDetailType">
+  <card class="invoice-detail-type" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Partner">
+  <card class="partner" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="partner_contracts.collection.count" count="&this.partner_contracts.size">
+         <count:partner_contracts param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="PartnerContract">
+  <card class="partner-contract" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="bill_rates.collection.count" count="&this.bill_rates.size">
+         <count:bill_rates param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="TaskHour">
+  <card class="task-hour" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+

@@ -1,0 +1,12 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="id,month,year,locked,locked_dt,run_maintenance,last_maintenace_dt,num_billing_details,num_invoices,num_task_hours">
+        <controls:/>
+	<run-maintenance-view:>
+	  <a href="/billable_periods/run_maintenance/#{this_parent.id}">run</a>
+	</run-maintenance-view:>
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

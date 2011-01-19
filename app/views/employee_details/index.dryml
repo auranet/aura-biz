@@ -1,0 +1,9 @@
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="id,employee,yearly_salary,yearly_vacation_days,yearly_flex_days,title,cost,employee_type,effective_dt,expiration_dt">
+        <controls:/>	
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

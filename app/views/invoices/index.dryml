@@ -1,0 +1,13 @@
+
+<index-page>
+  <collection: replace>
+    <div>
+      <table-plus fields="id,billable_period,customer,partner,billable_entity,billable_entity_type,closed,invoice_details,invoice">
+        <controls:/>
+	<invoice-view:>
+	  <%= InvoiceHelper.link_to_invoice(this_parent) %>
+	</invoice-view:>
+      </table-plus>
+    </div>
+  </collection:>
+</index-page>

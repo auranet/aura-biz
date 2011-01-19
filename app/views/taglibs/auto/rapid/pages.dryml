@@ -1,0 +1,1834 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&BillRate"><ht key="bill_rates.nav_item">Bill Rates</ht></nav-item>
+    <nav-item with="&BillablePeriod"><ht key="billable_periods.nav_item">Billable Periods</ht></nav-item>
+    <nav-item with="&BillableTask"><ht key="billable_tasks.nav_item">Billable Tasks</ht></nav-item>
+    <nav-item with="&BillingDetail"><ht key="billing_details.nav_item">Billing Details</ht></nav-item>
+    <nav-item with="&Customer"><ht key="customers.nav_item">Customers</ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+<!-- ====== BillRate Pages ====== -->
+
+<def tag="index-page" for="BillRate">
+  <page merge title="#{ht 'bill_rates.index.title', :default=>['Bill Rates'] }">
+    <body: class="index-page bill-rate" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="bill_rates.index.heading">
+            Bill Rates
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="bill_rates.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="bill_rates.actions.new">New Bill Rate</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BillRate">
+  <page merge title="#{ht 'bill_rates.new.title', :default=>[' New Bill Rate'] }">
+    <body: class="new-page bill-rate" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bill_rates.new.heading">
+            New Bill Rate
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'bill_rates.actions.create', :default=>['Create Bill Rate']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BillRate">
+  <page merge title="#{ht 'bill_rates.show.title', :default=>['Bill Rate'] }">
+
+    <body: class="show-page bill-rate" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:billable_task param="parent-link">&laquo; <ht key="bill_rates.actions.back" to="billable_task"><name/></ht></a:billable_task>
+            <h2 param="heading">
+              <ht key="bill_rates.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="bill_rates.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Bill Rate
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="rate, pay_rate, effective_dt, expiration_dt, employee, partner_contract" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BillRate">
+  <page merge title="#{ht 'bill_rates.edit.title', :default=>['Edit Bill Rate'] }">
+
+    <body: class="edit-page bill-rate" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bill_rates.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'bill_rates.actions.delete', :default=>['Remove This Bill Rate']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== BillablePeriod Pages ====== -->
+
+<def tag="index-page" for="BillablePeriod">
+  <page merge title="#{ht 'billable_periods.index.title', :default=>['Billable Periods'] }">
+    <body: class="index-page billable-period" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="billable_periods.index.heading">
+            Billable Periods
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="billable_periods.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="billable_periods.actions.new">New Billable Period</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BillablePeriod">
+  <page merge title="#{ht 'billable_periods.new.title', :default=>[' New Billable Period'] }">
+    <body: class="new-page billable-period" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billable_periods.new.heading">
+            New Billable Period
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'billable_periods.actions.create', :default=>['Create Billable Period']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BillablePeriod">
+  <page merge title="#{ht 'billable_periods.show.title', :default=>['Billable Period'] }">
+
+    <body: class="show-page billable-period" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="billable_periods.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="locked" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="billable_periods.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Billable Period
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="month, year, last_maintenace_dt, locked_dt" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BillablePeriod">
+  <page merge title="#{ht 'billable_periods.edit.title', :default=>['Edit Billable Period'] }">
+
+    <body: class="edit-page billable-period" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billable_periods.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'billable_periods.actions.delete', :default=>['Remove This Billable Period']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== BillableTask Pages ====== -->
+
+<def tag="index-page" for="BillableTask">
+  <page merge title="#{ht 'billable_tasks.index.title', :default=>['Billable Tasks'] }">
+    <body: class="index-page billable-task" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="billable_tasks.index.heading">
+            Billable Tasks
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="billable_tasks.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="billable_tasks.actions.new">New Billable Task</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BillableTask">
+  <page merge title="#{ht 'billable_tasks.new.title', :default=>[' New Billable Task'] }">
+    <body: class="new-page billable-task" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billable_tasks.new.heading">
+            New Billable Task
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'billable_tasks.actions.create', :default=>['Create Billable Task']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BillableTask">
+  <page merge title="#{ht 'billable_tasks.show.title', :default=>['Billable Task'] }">
+
+    <body: class="show-page billable-task" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:partner_contract param="parent-link">&laquo; <ht key="billable_tasks.actions.back" to="partner_contract"><name/></ht></a:partner_contract>
+            <h2 param="heading">
+              <ht key="billable_tasks.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="disabled" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="billable_tasks.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Billable Task
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="billable_tasks.collection.heading.other" >
+                  Bill Rates
+                </ht>
+              </h3>
+
+              <collection:bill_rates param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BillableTask">
+  <page merge title="#{ht 'billable_tasks.edit.title', :default=>['Edit Billable Task'] }">
+
+    <body: class="edit-page billable-task" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billable_tasks.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'billable_tasks.actions.delete', :default=>['Remove This Billable Task']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== BillingDetail Pages ====== -->
+
+<def tag="index-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_details.index.title', :default=>['Billing Details'] }">
+    <body: class="index-page billing-detail" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="billing_details.index.heading">
+            Billing Details
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="billing_details.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="billing_details.actions.new">New Billing Detail</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_details.new.title', :default=>[' New Billing Detail'] }">
+    <body: class="new-page billing-detail" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billing_details.new.heading">
+            New Billing Detail
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'billing_details.actions.create', :default=>['Create Billing Detail']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_details.show.title', :default=>['Billing Detail'] }">
+
+    <body: class="show-page billing-detail" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="billing_details.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="invoice_partner" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="billing_details.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Billing Detail
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="billable_hours, billable_amount, payable_amount, actual_bill_rate, pay_rate, bill_rate, billable_period, billable_task, customer, employee, partner, partner_contract, task_hour" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_details.edit.title', :default=>['Edit Billing Detail'] }">
+
+    <body: class="edit-page billing-detail" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="billing_details.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'billing_details.actions.delete', :default=>['Remove This Billing Detail']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Customer Pages ====== -->
+
+<def tag="index-page" for="Customer">
+  <page merge title="#{ht 'customers.index.title', :default=>['Customers'] }">
+    <body: class="index-page customer" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="customers.index.heading">
+            Customers
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="customers.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="customers.actions.new">New Customer</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Customer">
+  <page merge title="#{ht 'customers.new.title', :default=>[' New Customer'] }">
+    <body: class="new-page customer" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="customers.new.heading">
+            New Customer
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'customers.actions.create', :default=>['Create Customer']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Customer">
+  <page merge title="#{ht 'customers.show.title', :default=>['Customer'] }">
+
+    <body: class="show-page customer" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="customers.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="customers.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Customer
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Customer">
+  <page merge title="#{ht 'customers.edit.title', :default=>['Edit Customer'] }">
+
+    <body: class="edit-page customer" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="customers.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'customers.actions.delete', :default=>['Remove This Customer']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== EmployeeDetail Pages ====== -->
+
+<def tag="index-page" for="EmployeeDetail">
+  <page merge title="#{ht 'employee_details.index.title', :default=>['Employee Details'] }">
+    <body: class="index-page employee-detail" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="employee_details.index.heading">
+            Employee Details
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="employee_details.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="employee_details.actions.new">New Employee Detail</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="EmployeeDetail">
+  <page merge title="#{ht 'employee_details.new.title', :default=>[' New Employee Detail'] }">
+    <body: class="new-page employee-detail" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="employee_details.new.heading">
+            New Employee Detail
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'employee_details.actions.create', :default=>['Create Employee Detail']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="EmployeeDetail">
+  <page merge title="#{ht 'employee_details.show.title', :default=>['Employee Detail'] }">
+
+    <body: class="show-page employee-detail" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:employee param="parent-link">&laquo; <ht key="employee_details.actions.back" to="employee"><name/></ht></a:employee>
+            <h2 param="heading">
+              <ht key="employee_details.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="employee_details.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Employee Detail
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="yearly_salary, yearly_vacation_days, yearly_flex_days, title, cost, effective_dt, employee_type, expiration_dt" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="EmployeeDetail">
+  <page merge title="#{ht 'employee_details.edit.title', :default=>['Edit Employee Detail'] }">
+
+    <body: class="edit-page employee-detail" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="employee_details.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'employee_details.actions.delete', :default=>['Remove This Employee Detail']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Employee Pages ====== -->
+
+<def tag="index-page" for="Employee">
+  <page merge title="#{ht 'employees.index.title', :default=>['Employees'] }">
+    <body: class="index-page employee" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="employees.index.heading">
+            Employees
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="employees.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="employees.actions.new">New Employee</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Employee">
+  <page merge title="#{ht 'employees.new.title', :default=>[' New Employee'] }">
+    <body: class="new-page employee" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="employees.new.heading">
+            New Employee
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'employees.actions.create', :default=>['Create Employee']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Employee">
+  <page merge title="#{ht 'employees.show.title', :default=>['Employee'] }">
+
+    <body: class="show-page employee" param/>
+
+    <content: param>
+      <section-group>
+        <section param="main-content">
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="employees.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="employees.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Employee
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body" with-flash-messages>
+            <field-list fields="first_name, last_name, employment_start_dt, employment_end_dt, ssn" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="employees.collection.heading.other" >
+                  Employee Details
+                </ht>
+              </h3>
+
+              <collection:employee_details param/>
+            </section>
+          </section>
+        </section>
+
+        <aside param>
+          <section param="bill_rates-collection-section">
+            <h3 param="bill_rates-collection-heading">
+              <ht key="bill_rates.collection.heading.other" >
+                Bill Rates
+              </ht>
+            </h3>
+            <collection:bill_rates  param="bill_rates-collection"/>
+          </section>
+        </aside>
+      </section-group>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Employee">
+  <page merge title="#{ht 'employees.edit.title', :default=>['Edit Employee'] }">
+
+    <body: class="edit-page employee" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="employees.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'employees.actions.delete', :default=>['Remove This Employee']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-employee-detail-page" polymorphic/>
+<def tag="new-for-employee-detail-page" for="Employee">
+  <page merge title="#{ht 'employees.new_for_owner.title', :default=>['New Employee for']} #{name :with => @employee_detail}">
+    <body: class="new-for-owner-page  employee" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="employees.new_for_owner.heading">
+            New Employee
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="employees.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@employee_detail"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="employee_detail" method="post" param>
+          <field-list: skip="employee_detail"/>
+          <submit: label="#{ht 'employees.actions.create', :default=>['Create Employee']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== InvoiceDetailType Pages ====== -->
+
+<def tag="index-page" for="InvoiceDetailType">
+  <page merge title="#{ht 'invoice_detail_types.index.title', :default=>['Invoice Detail Types'] }">
+    <body: class="index-page invoice-detail-type" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_detail_types.index.heading">
+            Invoice Detail Types
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="invoice_detail_types.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="invoice_detail_types.actions.new">New Invoice Detail Type</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="InvoiceDetailType">
+  <page merge title="#{ht 'invoice_detail_types.new.title', :default=>[' New Invoice Detail Type'] }">
+    <body: class="new-page invoice-detail-type" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_detail_types.new.heading">
+            New Invoice Detail Type
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'invoice_detail_types.actions.create', :default=>['Create Invoice Detail Type']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="InvoiceDetailType">
+  <page merge title="#{ht 'invoice_detail_types.show.title', :default=>['Invoice Detail Type'] }">
+
+    <body: class="show-page invoice-detail-type" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="invoice_detail_types.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="invoice_detail_types.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Invoice Detail Type
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="InvoiceDetailType">
+  <page merge title="#{ht 'invoice_detail_types.edit.title', :default=>['Edit Invoice Detail Type'] }">
+
+    <body: class="edit-page invoice-detail-type" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_detail_types.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'invoice_detail_types.actions.delete', :default=>['Remove This Invoice Detail Type']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== InvoiceDetail Pages ====== -->
+
+<def tag="index-page" for="InvoiceDetail">
+  <page merge title="#{ht 'invoice_details.index.title', :default=>['Invoice Details'] }">
+    <body: class="index-page invoice-detail" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_details.index.heading">
+            Invoice Details
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="invoice_details.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="invoice_details.actions.new">New Invoice Detail</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="InvoiceDetail">
+  <page merge title="#{ht 'invoice_details.new.title', :default=>[' New Invoice Detail'] }">
+    <body: class="new-page invoice-detail" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_details.new.heading">
+            New Invoice Detail
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'invoice_details.actions.create', :default=>['Create Invoice Detail']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="InvoiceDetail">
+  <page merge title="#{ht 'invoice_details.show.title', :default=>['Invoice Detail'] }">
+
+    <body: class="show-page invoice-detail" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:invoice param="parent-link">&laquo; <ht key="invoice_details.actions.back" to="invoice"><name/></ht></a:invoice>
+            <h2 param="heading">
+              <ht key="invoice_details.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="locked" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="invoice_details.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Invoice Detail
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="post_dt, amount, notes, invoice_detail_type" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="InvoiceDetail">
+  <page merge title="#{ht 'invoice_details.edit.title', :default=>['Edit Invoice Detail'] }">
+
+    <body: class="edit-page invoice-detail" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoice_details.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'invoice_details.actions.delete', :default=>['Remove This Invoice Detail']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Invoice Pages ====== -->
+
+<def tag="index-page" for="Invoice">
+  <page merge title="#{ht 'invoices.index.title', :default=>['Invoices'] }">
+    <body: class="index-page invoice" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="invoices.index.heading">
+            Invoices
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="invoices.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="invoices.actions.new">New Invoice</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Invoice">
+  <page merge title="#{ht 'invoices.new.title', :default=>[' New Invoice'] }">
+    <body: class="new-page invoice" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoices.new.heading">
+            New Invoice
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'invoices.actions.create', :default=>['Create Invoice']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Invoice">
+  <page merge title="#{ht 'invoices.show.title', :default=>['Invoice'] }">
+
+    <body: class="show-page invoice" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="invoices.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="closed" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="invoices.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Invoice
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="billable_entity_type, billable_period, customer, partner" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="invoices.collection.heading.other" >
+                  Invoice Details
+                </ht>
+              </h3>
+
+              <collection:invoice_details param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Invoice">
+  <page merge title="#{ht 'invoices.edit.title', :default=>['Edit Invoice'] }">
+
+    <body: class="edit-page invoice" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="invoices.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'invoices.actions.delete', :default=>['Remove This Invoice']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== PartnerContract Pages ====== -->
+
+<def tag="index-page" for="PartnerContract">
+  <page merge title="#{ht 'partner_contracts.index.title', :default=>['Partner Contracts'] }">
+    <body: class="index-page partner-contract" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="partner_contracts.index.heading">
+            Partner Contracts
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="partner_contracts.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="partner_contracts.actions.new">New Partner Contract</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PartnerContract">
+  <page merge title="#{ht 'partner_contracts.new.title', :default=>[' New Partner Contract'] }">
+    <body: class="new-page partner-contract" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="partner_contracts.new.heading">
+            New Partner Contract
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'partner_contracts.actions.create', :default=>['Create Partner Contract']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PartnerContract">
+  <page merge title="#{ht 'partner_contracts.show.title', :default=>['Partner Contract'] }">
+
+    <body: class="show-page partner-contract" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:partner param="parent-link">&laquo; <ht key="partner_contracts.actions.back" to="partner"><name/></ht></a:partner>
+            <h2 param="heading">
+              <ht key="partner_contracts.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="invoice_partner" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="partner_contracts.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Partner Contract
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="customer" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="partner_contracts.collection.heading.other" >
+                  Bill Rates
+                </ht>
+              </h3>
+
+              <collection:bill_rates param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PartnerContract">
+  <page merge title="#{ht 'partner_contracts.edit.title', :default=>['Edit Partner Contract'] }">
+
+    <body: class="edit-page partner-contract" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="partner_contracts.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'partner_contracts.actions.delete', :default=>['Remove This Partner Contract']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Partner Pages ====== -->
+
+<def tag="index-page" for="Partner">
+  <page merge title="#{ht 'partners.index.title', :default=>['Partners'] }">
+    <body: class="index-page partner" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="partners.index.heading">
+            Partners
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="partners.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="partners.actions.new">New Partner</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Partner">
+  <page merge title="#{ht 'partners.new.title', :default=>[' New Partner'] }">
+    <body: class="new-page partner" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="partners.new.heading">
+            New Partner
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'partners.actions.create', :default=>['Create Partner']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Partner">
+  <page merge title="#{ht 'partners.show.title', :default=>['Partner'] }">
+
+    <body: class="show-page partner" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="partners.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="partners.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Partner
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="partners.collection.heading.other" >
+                  Partner Contracts
+                </ht>
+              </h3>
+
+              <collection:partner_contracts param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Partner">
+  <page merge title="#{ht 'partners.edit.title', :default=>['Edit Partner'] }">
+
+    <body: class="edit-page partner" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="partners.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'partners.actions.delete', :default=>['Remove This Partner']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== TaskHour Pages ====== -->
+
+<def tag="index-page" for="TaskHour">
+  <page merge title="#{ht 'task_hours.index.title', :default=>['Task Hours'] }">
+    <body: class="index-page task-hour" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="task_hours.index.heading">
+            Task Hours
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="task_hours.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="task_hours.actions.new">New Task Hour</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="TaskHour">
+  <page merge title="#{ht 'task_hours.new.title', :default=>[' New Task Hour'] }">
+    <body: class="new-page task-hour" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="task_hours.new.heading">
+            New Task Hour
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'task_hours.actions.create', :default=>['Create Task Hour']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="TaskHour">
+  <page merge title="#{ht 'task_hours.show.title', :default=>['Task Hour'] }">
+
+    <body: class="show-page task-hour" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="task_hours.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="task_hours.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Task Hour
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="hours, locked, billable_period, billable_task, employee" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="TaskHour">
+  <page merge title="#{ht 'task_hours.edit.title', :default=>['Edit Task Hour'] }">
+
+    <body: class="edit-page task-hour" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="task_hours.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'task_hours.actions.delete', :default=>['Remove This Task Hour']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== User Pages ====== -->
+
+<def tag="index-page" for="User">
+  <page merge title="#{ht 'users.index.title', :default=>['Users'] }">
+    <body: class="index-page user" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.index.heading">
+            Users
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="users.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="#{ht 'users.new.title', :default=>[' New User'] }">
+    <body: class="new-page user" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.new.heading">
+            New User
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'users.actions.create', :default=>['Create User']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'users.show.title', :default=>['User'] }">
+
+    <body: class="show-page user" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="users.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="administrator" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit User
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="email_address, state" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="#{ht 'users.edit.title', :default=>['Edit User'] }">
+
+    <body: class="edit-page user" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'users.actions.delete', :default=>['Remove This User']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+  
+  <page title="#{ht 'users.signup.title', :default=>['Signup']}" merge>  
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.signup.heading">
+            Signup
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <signup-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="#{ht 'users.reset_password.title', :default=>['Reset Password']}" merge>
+
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.reset_password.heading">
+            Reset Password
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <reset-password-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+

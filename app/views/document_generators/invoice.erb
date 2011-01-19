@@ -1,0 +1,253 @@
+<html>
+  <head>
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <title><%= @title %></title>
+    <style>
+<!--
+.td {  
+  border: 1px solid #a5a5a5;
+}
+-->
+    </style>
+  </head>
+  <body lang="EN-US" 
+	link="blue" 
+	vlink="purple">
+    <div class="Section1">
+      <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="612"
+	     style="width:459.0pt;border-collapse:collapse">
+	<tr>
+	  <td style="padding:.75pt .75pt .75pt 1.5pt">
+	    <p class="MsoNormal" align="center" style="text-align:center">
+	      <span style="font-size:8.5pt;font-family:Arial">
+		<% img_tag = ""
+		   case @format
+		   when :pdf
+		     img_tag = pdf_image_tag("aura-logo.png", :alt => "Aura Software LLC")
+                   when :msword
+                     img_tag = '<img src="http://www.aura-software.com/images/aura-logo.png"/>'
+                   else
+                     img_tag = image_tag("aura-logo.png", :alt => "Aura Software LLC")
+                   end %>
+                <%= img_tag %>
+              </span>
+            </p>
+<hr>
+            <h1 align="center" style="text-align:center">
+              <span style="font-family:Arial">Invoice: <%= @invoice.name %></span>
+	    </h1>
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <table border="1">
+	<tr>
+	  <td>Date:</td>
+	  <td><%= Time.now %></td>
+	</tr>
+	<tr>
+	  <td>Invoice #</td>
+	  <td><%= @invoice.id %></td>
+	</tr>
+	<tr>
+	  <td>From:</td>
+	  <td>Aura Software LLC</td>
+	</tr>
+	<tr>
+	  <td>To:</td>
+	  <td><%= @invoice.billable_entity.name %></td>
+	</tr>
+
+	<tr>
+	  <td>External Vendor Code:</td>
+	  <td><%= @billable_entity.respond_to?(:vendor_code) ? (@billable_entity.vendor_code ? @billable_entity.vendor_code.to_i : 'N/A') : 'N/A' %></td>
+	</tr>
+
+	<tr>
+	  <td>Billing Address:</td>
+	  <td><pre><%= @billable_entity.respond_to?(:billing_address) ? @billing_address.billing_address : 'N/A' %></pre></td>
+	</tr>
+
+	<tr>
+	  <td>Invoice Period:</td>
+	  <td><%= "#{@invoice.billable_period.name}" %></td>
+	</tr>
+
+	<tr>
+	  <td>Bank Key/Routing Number/Swift Code:</td>
+	  <td></td>
+	</tr>
+
+	<tr>
+	  <td>Account #</td>
+	  <td></td>
+	</tr>
+	
+      </table>
+<hr>
+
+<% if @po_details and @po_details.length > 0 %>
+<p>
+Purchase Order Details:
+
+<table border="1">
+<tr>
+<% total = hours = 0 %>
+<% cols = [:po_number,:description,:amount] %>
+<% cols.each do |c| %>
+<th><%= c.to_s.gsub(/_/,' ').capitalize %></th>
+<% end %>
+</tr>
+<% @po_details.each do |detail| 
+  po = PurchaseOrder.find(detail.purchase_order_id) %>
+  <tr>
+    <td><%= po.po_number.to_i %></td>
+    <td><%= po.description %></td>
+    <td><%= po.amount %></td>
+  </tr>
+<% end %>
+</table>
+<hr>
+<% end %>
+
+
+<% 
+  if @employee_billing_details and @employee_billing_details.employee_sets.keys.length > 0 %>
+<p>
+Billing Details:
+<table border="1">
+<tr>
+<% total = hours = 0 %>
+<% cols = [:employee,:billable_task_name,:actual_bill_rate,:hours,:billable_amount] %>
+<% cols.each do |c| %>
+<th><%= c.to_s.gsub(/_/,' ').capitalize %></th>
+<% end %>
+</tr>
+
+<% @employee_billing_details.each do |emp| %>
+  <% emp.rows.each do |detail| %>
+    <tr>
+      <% hours += detail.hours %>
+      <% total += detail.billable_amount %>
+      <% cols.each do |c| %>
+      <td><%= detail.send(c) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><em><%= emp.hours %></em></td>
+    <td><em><%= emp.billable_amount %></em></td>
+  </tr>
+  <tr></tr>
+<% end %>
+<tr>
+<th>
+Total
+</th>
+<td></td>
+<td></td>
+<td><em><%= hours %></em></td>
+<td><em><%= total %></em></td>
+</tr>
+</table>
+<i>Detailed billing records available on request.  For more information contact us at <em>service@aura-software.com.</em></i>
+
+<hr>
+<% end %>
+Invoice Detail Summary:
+<table border="1">
+  <tr>
+    <th>Detail Type</th>
+    <th>Amount</th>
+    <th>Notes</th>
+  </tr>
+  <% @invoice_details.each do |id| %>
+  <tr>
+    <td><%= id.invoice_detail_type.description %></td>
+    <td><%= id.amount %></td>
+    <td><%= id.notes %></td>
+  </tr>
+  <% end %>
+</table>
+
+<hr>
+Account Summary:
+<table border="1">
+<tr>
+<% sums = {} %>
+<% cols = [:month,:year,:invoiced_amount,:credit_pre_pays,:invoiced_total,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
+<% cols.each do |c| %>
+<th><%= c.to_s.gsub(/_/,' ').capitalize %></th>
+<% end %>
+</tr>
+<% @unpaid_invoices.each do |inv| %>
+<tr>
+<% cols.each do |c| %>
+<td><%= inv.send(c) %></td>
+<% 
+  sums[c] = 0 unless sums[c]
+  sums[c] += inv.send(c)
+%>
+<% end %>
+</tr>
+<% end %>
+<tr>
+<th>Total</th>
+<td></td>
+<% cols = [:invoiced_amount,:credit_pre_pays,:invoiced_total,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
+<% cols.each do |c| %>
+<td><em><%= sums[c] %><em></td>
+<% end %>
+</tr>
+</table>
+<% if @credit_prepays %>
+<hr/>
+Credit Prepay Summary:
+<table border="1">
+<tr>
+<th>Month</th>
+<th>Prepaid Credit</th>
+</tr>
+<% @credit_prepays.each do |credit| %>
+<tr>
+<td><%= "#{credit.month.to_i}/#{credit.year.to_i}" -%></td>
+<td><%= credit.r_amt - credit.x_amt %></td>
+</tr>
+<% end  %>
+<tr>
+<td><em>Total</em></td>
+<td><em><%= @total_credit %></em></td>
+</tr>
+</table>
+<% end %>
+<p>
+<hr/>
+<br>
+
+We encourage you to pay electronically!  For direct bank transfer use the Bank(Swift) Code and account number listed at the top of this document.<br>
+For paper checks, please make checks payable to Aura Software LLC and mail to:<br>
+<pre>
+Aura Software LLC
+1754 S Dover Way
+Lakewood, CO 
+80232
+USA
+</pre>
+<br>
+For billing support please contact:
+<br>
+<pre>
+service@aura-software.com
++1 720 837 AURA (USA)
+www.aura-software.com
+</pre>
+<br>
+<h3>We thank you for your business!</h3>
+
+    </div>
+
+  </body>
+</html>
