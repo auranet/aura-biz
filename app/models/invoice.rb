@@ -36,6 +36,18 @@ class Invoice < ActiveRecord::Base
     end
   end
 
+  def details
+    invoice_details.collect {|x| [x.invoice_detail_type.name, x.amount]}
+  end
+
+  def invoice_amt
+    details.each {|x| 
+      return x[1] if x[0] == "I" 
+    }
+    nil
+  end
+      
+
   ################################################################################
 
   ################################################################################
@@ -44,6 +56,8 @@ class Invoice < ActiveRecord::Base
     ret = "#{self.send(billable_entity_type.to_sym).send(:name)} - #{billable_period.name}"
 
     ret += "(p)" if billable_entity_type.match /partner/
+
+    ret += " ($#{invoice_amt})"
     ret
   end
 
