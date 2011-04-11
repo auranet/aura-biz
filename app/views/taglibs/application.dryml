@@ -19,3 +19,15 @@
 </def>
 
 <include src="hobo-jqi-all" plugin="hobo-jqi"/>
+
+<extend tag="form" for="Invoice">
+  <old-form merge>
+    <field-list: fields="po_number,hard_coded_invoice_date"/>
+  </old-form>
+</extend>
+
+<extend tag="form" for="Customer">
+  <old-form merge>
+    <field-list: fields="name,billing_address,billing_note"/>
+  </old-form>
+</extend>

@@ -1,7 +1,17 @@
+<% 
+  sums = {}
+  cols = [:month,:year,:invoiced_amount,:credit_pre_pays,:invoiced_total,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed]
+  @unpaid_invoices.each do |inv|
+    cols.each do |c|
+      sums[c] = 0 unless sums[c]
+      sums[c] += inv.send(c)
+    end
+  end
+%>
 <html>
   <head>
     <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-    <title><%= @title %></title>
+    <title><%= @invoice.name %> (<%= sums[:invoiced_total] %>)</title>
     <style>
 <!--
 .td {  
@@ -34,7 +44,7 @@
             </p>
 <hr>
             <h1 align="center" style="text-align:center">
-              <span style="font-family:Arial">Invoice: <%= @invoice.name %></span>
+              <span style="font-family:Arial">Invoice: <%= @invoice.name %> ($<%= sums[:invoiced_total] %>)</span>
 	    </h1>
           </td>
         </tr>
@@ -43,7 +53,7 @@
       <table border="1">
 	<tr>
 	  <td>Date:</td>
-	  <td><%= Time.now %></td>
+	  <td><%= @invoice.hard_coded_invoice_date ? @invoice.hard_coded_invoice_date : Time.now %></td>
 	</tr>
 	<tr>
 	  <td>Invoice #</td>
@@ -65,7 +75,13 @@
 
 	<tr>
 	  <td>Billing Address:</td>
-	  <td><pre><%= @billable_entity.respond_to?(:billing_address) ? @billing_address.billing_address : 'N/A' %></pre></td>
+	  <td><pre><%= @billable_entity.respond_to?(:billing_address) ? @billable_entity.billing_address : 'N/A' %></pre></td>
+	</tr>
+
+
+	<tr>
+	  <td>Notes:</td>
+	  <td><pre><%= @billable_entity.respond_to?(:billing_note) ? @billable_entity.billing_note : 'N/A' %></pre></td>
 	</tr>
 
 	<tr>
@@ -73,16 +89,32 @@
 	  <td><%= "#{@invoice.billable_period.name}" %></td>
 	</tr>
 
-	<tr>
-	  <td>Bank Key/Routing Number/Swift Code:</td>
-	  <td></td>
+        <tr>
+	  <td>Bank Name:</td>
+	  <td>US Bank</td>
+	</tr>
+
+        <tr>
+	  <td>Routing Number (USA):</td>
+	  <td>102000021</td>
+	</tr>
+
+        <tr>
+	  <td>Account Number:</td>
+	  <td>103679647083</td>
 	</tr>
 
 	<tr>
-	  <td>Account #</td>
-	  <td></td>
+	  <td>Bank Key/Swift Code:</td>
+	  <td>USBKUS44IMT</td>
 	</tr>
 	
+
+	<tr>
+	  <td>PO Number:</td>
+	  <td><%= @invoice.po_number %></td>
+	</tr>
+
       </table>
 <hr>
 
@@ -155,7 +187,7 @@ Total
 <td><em><%= total %></em></td>
 </tr>
 </table>
-<i>Detailed billing records available on request.  For more information contact us at <em>service@aura-software.com.</em></i>
+<i>Detailed billing records available on request.  For more information contact us at <em>ar@aura-software.com.</em></i>
 
 <hr>
 <% end %>
@@ -176,11 +208,11 @@ Invoice Detail Summary:
 </table>
 
 <hr>
+<%  cols = [:month,:year,:invoiced_total,:credit_pre_pays,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
+
 Account Summary:
 <table border="1">
 <tr>
-<% sums = {} %>
-<% cols = [:month,:year,:invoiced_amount,:credit_pre_pays,:invoiced_total,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
 <% cols.each do |c| %>
 <th><%= c.to_s.gsub(/_/,' ').capitalize %></th>
 <% end %>
@@ -189,17 +221,13 @@ Account Summary:
 <tr>
 <% cols.each do |c| %>
 <td><%= inv.send(c) %></td>
-<% 
-  sums[c] = 0 unless sums[c]
-  sums[c] += inv.send(c)
-%>
 <% end %>
 </tr>
 <% end %>
 <tr>
 <th>Total</th>
 <td></td>
-<% cols = [:invoiced_amount,:credit_pre_pays,:invoiced_total,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
+<% cols = [:invoiced_total,:credit_pre_pays,:amount_paid,:amount_credited,:total_paid_and_credited,:amount_owed] %>
 <% cols.each do |c| %>
 <td><em><%= sums[c] %><em></td>
 <% end %>
@@ -242,8 +270,7 @@ USA
 For billing support please contact:
 <br>
 <pre>
-service@aura-software.com
-+1 720 837 AURA (USA)
+ar@aura-software.com
 www.aura-software.com
 </pre>
 <br>

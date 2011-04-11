@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102183301) do
+ActiveRecord::Schema.define(:version => 201104111007101) do
 
   create_table "bill_rates", :force => true do |t|
     t.float    "rate",                :default => 0.0
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20101102183301) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "billing_address"
+    t.text     "billing_note"
   end
 
   create_table "dual", :id => false, :force => true do |t|
@@ -142,9 +144,11 @@ ActiveRecord::Schema.define(:version => 20101102183301) do
     t.integer  "billable_period_id"
     t.integer  "customer_id"
     t.integer  "partner_id"
-    t.integer  "billable_entity_id",                 :null => false
-    t.string   "billable_entity_type", :limit => 32, :null => false
+    t.integer  "billable_entity_id",                    :null => false
+    t.string   "billable_entity_type",    :limit => 32, :null => false
     t.boolean  "closed"
+    t.text     "po_number"
+    t.date     "hard_coded_invoice_date"
   end
 
   add_index "invoices", ["billable_period_id", "billable_entity_id", "billable_entity_type"], :name => "invoices_uk1", :unique => true

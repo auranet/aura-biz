@@ -2,7 +2,7 @@
 <index-page>
   <collection: replace>
     <div>
-      <table-plus fields="id,billable_period,customer,partner,billable_entity,billable_entity_type,closed,invoice_details,invoice">
+      <table-plus fields="id,billable_period,customer,partner,billable_entity,billable_entity_type,closed,invoice_details,invoice,po_number">
         <controls:/>
 	<invoice-view:>
 	  <%= InvoiceHelper.link_to_invoice(this_parent) %>

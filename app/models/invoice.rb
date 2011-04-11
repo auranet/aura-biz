@@ -57,7 +57,7 @@ class Invoice < ActiveRecord::Base
 
     ret += "(p)" if billable_entity_type.match /partner/
 
-    ret += " ($#{invoice_amt})"
+#   ret += " ($#{invoice_amt})"
     ret
   end
 
